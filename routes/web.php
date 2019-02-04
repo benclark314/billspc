@@ -11,17 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    //return view('welcome');
-    return view('home');
-});
+Route::get('/', 'PagesController@getIndex')->name('pages.index');;
 
-Route::get('/about', function () {
-    //return view('welcome');
-    return view('about');
-});
+Route::get('/about', 'PagesController@getAbout')->name('pages.about');
 
-Route::get('/contact', function () {
-    //return view('welcome');
-    return view('contact');
-});
+Route::get('contact', 'ContactController@showForm')->name('contact.show');
+
+Route::get('pokemonlist', 'PagesController@getPokemonList')->name('pages.pokemonlist');
+
+//Route::get('/users/{id}/{name}', function($id, $name){
+//    return 'This is user '.$name.' with an id of '.$id;
+//});
