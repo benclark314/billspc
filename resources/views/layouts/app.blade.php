@@ -3,9 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{{asset('css/app.css')}}">
-        <title>Static Site - @yield('title')</title>
-        @include('partials._stylesheets')
+        <link rel="stylesheet" href="css/app.css">
+
+        <title>Bill's PC - @yield('title')</title>
+
     </head>
     <body>
           @include('partials._sidebar')
@@ -17,7 +18,8 @@
             </div>
           </div>
 
-          @include('partials._scripts')
+          <!--@include('partials._scripts')-->
 
     </body>
+    <script type="text/JavaScript" src="js/app.js"></script>
 </html>
