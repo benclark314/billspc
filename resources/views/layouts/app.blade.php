@@ -5,11 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/app.css">
 
-        <title>Bill's PC - @yield('title')</title>
-
+        <!-- <title>Bill's PC - @yield('title')</title> -->
+        <title>{{config('app.name', 'Bills PC0')}}</title>
     </head>
     <body>
-          @include('partials._sidebar')
+          @include('partials._navbar')
           <div class="container">
             <div class="row">
               <div class="col-sm-12">

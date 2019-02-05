@@ -3,6 +3,7 @@
 
 @section('content')
 <div class="container">
+  <!-- <div class="jumbotron text-center" style="background-image: url(images/ash-pokeball.jpg); background-size: 100%;"> -->
   <div class="jumbotron text-center">
     <h1 class="display-4">Welcome to Bill's PC</h1>
     <p class="lead">Accessed Bill's PC... <br></br> Accessed Pokemon Storage System...</p>
