@@ -12,4 +12,8 @@
     <p><a class="btn btn-primary btn-lg" href="/login" role="button">Log in</a> <a class="btn btn-success btn-lg" href="/sign-in" role="button">Sign up</a>
   </div>
 </div>
+
+<div class="container">
+  <p><a class="btn btn-primary btn-lg" role="button" action="resources/views/inc/importPokemon.php" method="POST">Import all Pokemon from CSV</a>
+</div>
 @endsection

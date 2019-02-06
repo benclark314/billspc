@@ -6,11 +6,12 @@
     @foreach($pokemon as $poke)
       <div class="container">
         <div class="card card-body bg-light">
-          <h3>{{$poke->pokemonName}}</h3>
+          <h3><a href="pokemon/{{$poke->id}}">{{$poke->pokemonName}}</a></h3>
           <small>Caught {{$poke->created_at}}</small>
         </div>
       </div>
     @endforeach
+    {{$pokemon->links()}}
   @else
     <div class = "container">
       <h5>No pokemon found</h5>

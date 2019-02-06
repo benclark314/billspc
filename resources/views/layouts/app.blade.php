@@ -4,9 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/app.css">
-
-        <!-- <title>Bill's PC - @yield('title')</title> -->
-        <title>{{config('app.name', 'Bills PC0')}}</title>
+    <title>{{config('app.name', 'Bill\'s PC')}}</title>
     </head>
     <body>
           @include('partials._navbar')
@@ -17,9 +15,6 @@
                 @yield('content')
             </div>
           </div>
-
-          <!--@include('partials._scripts')-->
-
     </body>
     <script type="text/JavaScript" src="js/app.js"></script>
 </html>

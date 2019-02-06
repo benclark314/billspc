@@ -14,7 +14,13 @@ class PokemonController extends Controller
      */
     public function index()
     {
-        $pokemon = Pokemon::all();
+        //$pokemon = Pokemon::all();
+        //$pokemon = Pokemon::orderBy('id','asc')->take(1)->get();
+        //return Pokemon::where('genus', 'Seed Pokemon')->get();
+        //$pokemon = DB::select('SELECT * FROM pokemon');
+
+        $pokemon = Pokemon::orderBy('id','asc')->get();
+        $pokemon = Pokemon::orderBy('id','asc')->paginate(1);
         return view('pokemon.index')->with('pokemon', $pokemon);
     }
 
@@ -47,7 +53,10 @@ class PokemonController extends Controller
      */
     public function show($id)
     {
-        //
+        // return Pokemon::find($id);
+        $poke = Pokemon::find($id);
+        return view('pokemon.show')->with('pokemon', $poke);
+
     }
 
     /**

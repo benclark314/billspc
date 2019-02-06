@@ -17,7 +17,7 @@ Route::get('/about', 'PagesController@getAbout')->name('pages.about');
 
 Route::get('contact', 'ContactController@showForm')->name('contact.show');
 
-Route::get('pokemonlist', 'PagesController@getPokemonList')->name('pages.pokemonlist');
+//Route::get('pokemonlist', 'PagesController@getPokemonList')->name('pages.pokemonlist');
 
 Route::resource('pokemon', 'PokemonController');
 //Route::get('/users/{id}/{name}', function($id, $name){
