@@ -2,6 +2,7 @@
 @section('title', 'Pokemon List')
 
 
+
 @section('content')
   <h1>{{$title}}</h1>
   <hr>
@@ -10,7 +11,7 @@
     <div class="container">
       <ul>
         @foreach($pokemon as $poke)
-          <li>{{$poke}}</li>
+          <li class="list-group-item">{{$poke}}</li>
         @endforeach
       </ul>
     </div>
