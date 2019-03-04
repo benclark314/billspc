@@ -13,6 +13,7 @@ class CreatePokemonTable extends Migration
      */
     public function up()
     {
+        //Schema::rename('pokemon', 'nomekop');
         Schema::create('pokemon', function (Blueprint $table) {
             $table->increments('id');
             $table->string('pokemonName');
