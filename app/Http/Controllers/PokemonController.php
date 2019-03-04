@@ -20,7 +20,7 @@ class PokemonController extends Controller
         //$pokemon = DB::select('SELECT * FROM pokemon');
 
         $pokemon = Pokemon::orderBy('id','asc')->get();
-        $pokemon = Pokemon::orderBy('id','asc')->paginate(1);
+        $pokemon = Pokemon::orderBy('id','asc')->paginate(20);
         return view('pokemon.index')->with('pokemon', $pokemon);
     }
 
@@ -31,7 +31,7 @@ class PokemonController extends Controller
      */
     public function create()
     {
-        return view('pokemon.index');
+
     }
 
     /**
@@ -41,9 +41,23 @@ class PokemonController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-
-    //This method is undergoing experimentation.
-    //It is supposed to upload the pokedex.csv file.
+     //This method will parse a CSV file and place it in the pokemon table.
+     // One way to run this method:
+     // 1)Place the following code in the "create" function of this class:
+     //   return view('pokemon.index');
+     // 2)Place the following interface code in the pokemon.index file.
+     //   @extends('layouts.app')
+     //   @section('content')
+     //     <form action="{{url('/pokemon')}}" method="post" enctype="multipart/form-data">
+     //     {{csrf_field()}}
+     //         <div class="form-group">
+     //             <label for="upload-file">Upload</label>
+     //             <input type="file" name="upload-file" class="form-control">
+     //         </div>
+     //         <input class="btn btn-success" type="submit" value="Upload File" name="submit">
+     //     </form>
+     //   @endsection
+     // 3)Navigate to the /pokemon page and upload the csv file.
     public function store(Request $request)
     {
       //get file
@@ -73,9 +87,9 @@ class PokemonController extends Controller
               continue;
           }
           //trim data
-          foreach ($columns as $key => &$value) {
-              $value=preg_replace('/\D/','',$value);
-          }
+          // foreach ($columns as $key => &$value) {
+          //     $value=preg_replace('/\D/','',$value);
+          // }
           // dd($value);
 
          $data= array_combine($escapedHeader, $columns);
@@ -119,88 +133,6 @@ class PokemonController extends Controller
          //$pokemon->updated_at=$updated_at;
          $pokemon->save();
       }
-
-
-
-
-
-
-
-
-
-        // public $data = array();
-        // public $int = 0;
-        //
-        //
-        //$pokemon = DB::select('SELECT * FROM pokemon');
-        //Schema::rename('pokemon', 'nomekop');
-              //
-              // //Schema::create('pokemo1', Blueprint($table){
-              // //C:/xampp/htdocs/BillsPC/
-              // $filename = 'public/extras/pokedex1.csv';
-              // $delimiter = ',';
-              // if (!file_exists($filename) || !is_readable($filename)){
-              //   echo 'file WWAAAAAAAAAAAAAAAAAAAAAAAASNT FOUND';
-              //   return false;
-              // }
-              // $header = null;
-              //
-              // //Put CSV into array
-              // if (($handle = fopen($filename, 'r')) !== false)
-              // {
-              //   echo 'file WWAAAAAAAAAAAAAAAAAAAAAAAAS FOUND!!!!!!!!!!!';
-              //   while (($row = fgetcsv($handle, 1000, $delimiter)) !== false)
-              //   {
-              //     if (!$header)
-              //         $header = $row;
-              //     else
-              //         $data[] = array_combine($header, $row);
-              //   }
-              //   fclose($handle);
-              // }
-              //
-              //
-              //
-              // //Create a Pokemon table
-              // // $sql = "CREATE TABLE Pokemo1 (
-              // // id INT(4) UNSIGNED PRIMARY KEY,
-              // // name VARCHAR(500) NOT NULL,
-              // // types VARCHAR(500) NOT NULL,
-              // // height FLOAT NOT NULL,
-              // // weight FLOAT NOT NULL,
-              // // abilities VARCHAR(500) NOT NULL,
-              // // egg_groups VARCHAR(500) NOT NULL,
-              // // stats VARCHAR(500) NOT NULL,
-              // // genus NVARCHAR(500) NOT NULL,
-              // // description VARCHAR(500) NOT NULL
-              // // )";
-              // // DB::statement($sql);
-              //
-              //
-              // for ($i = 0; $i < count($data); $i ++)
-              // {
-              //   //dd($data);
-              //   //$table->increments($data[$i]);
-              //   $int = $i;
-              //   Schema::create('pokemon', function (Blueprint $table) {
-              //
-              //   //dd($this->data);
-              //   //$temp = $this->data[$this->int];
-              //
-              //   $table->id($this->data["id"]);
-              //   $table->string("2");
-              //   $table->string($temp);
-              //   $table->string($data[$i]);
-              //   $table->string($data[$i]);
-              //   $table->string($data[$i]);
-              //   $table->string($data[$i]);
-              //   $table->string($data[$i]);
-              //   $table->string($data[$i]);
-              //   $table->string($data[$i]);
-              //   $table->string($data[$i]);
-              //   });
-              //   DB::table('pokemo1')->insert($data[$i]);
-              // }
     }
     /**
      * Display the specified resource.
