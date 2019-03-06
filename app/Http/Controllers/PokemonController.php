@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pokemon;
+use App\PokemonStats;
 
 class PokemonController extends Controller
 {
@@ -31,7 +32,6 @@ class PokemonController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
@@ -41,7 +41,7 @@ class PokemonController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     //This method will parse a CSV file and place it in the pokemon table.
+     // This method will parse a CSV file and place it in the pokemon table.
      // One way to run this method:
      // 1)Place the following code in the "create" function of this class:
      //   return view('pokemon.index');
@@ -72,7 +72,7 @@ class PokemonController extends Controller
       //validate
       foreach ($header as $key => $value) {
           $lheader=strtolower($value);
-          $escapedItem=preg_replace('/[^a-z]/', '', $lheader);
+          $escapedItem=preg_replace('/[^a-z_]/', '', $lheader);
           //dd($escapedItem);
           array_push($escapedHeader, $escapedItem);
       } //dd($escapedHeader);
@@ -95,7 +95,7 @@ class PokemonController extends Controller
          $data= array_combine($escapedHeader, $columns);
 
          // setting type
-         foreach ($data as $key => &$value) {
+         //foreach ($data as $key => &$value) {
            // if($key=="id")
            // {
            //     $value=(integer)$value;
@@ -109,13 +109,17 @@ class PokemonController extends Controller
            //     $value=(float)$value;
            // }
            //$value=($key=="id" || $key=="month")?(integer)$value: (float)$value;
-         }
+         //}
 
          // Table update
          $id=$data['id'];
-         $pokemonName=$data['name'];
+         $name=$data['name'];
+         $types=$data['types'];
          $height=$data['height'];
          $weight=$data['weight'];
+         $abilities=$data['abilities'];
+         $egg_groups=$data['egg_groups'];
+         $stats=$data['stats'];
          $genus=$data['genus'];
          $description=$data['description'];
          //$created_at=$data['created_at'];
@@ -124,9 +128,13 @@ class PokemonController extends Controller
          //$budget= Budget::firstOrNew(['id'=>$id,'month'=>$month]);
          $pokemon= Pokemon::firstOrNew(['id'=>$id]);
          $pokemon->id=$id;
-         $pokemon->pokemonName=$pokemonName;
+         $pokemon->pokemonName=$name;
+         $pokemon->pokemonTypes=$types;
          $pokemon->height=$height;
          $pokemon->weight=$weight;
+         $pokemon->abilities=$abilities;
+         $pokemon->egg_groups=$egg_groups;
+         $pokemon->stats=$stats;
          $pokemon->genus=$genus;
          $pokemon->description=$description;
          //$pokemon->created_at=$created_at;
@@ -145,7 +153,6 @@ class PokemonController extends Controller
         // return Pokemon::find($id);
         $poke = Pokemon::find($id);
         return view('pokemon.show')->with('pokemon', $poke);
-
     }
 
     /**

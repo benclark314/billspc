@@ -13,12 +13,15 @@ class CreatePokemonTable extends Migration
      */
     public function up()
     {
-        //Schema::rename('pokemon', 'nomekop');
         Schema::create('pokemon', function (Blueprint $table) {
-            $table->increments('id');
+            $table->integer('id');
             $table->string('pokemonName');
-            $table->float('height', 8, 4);
-            $table->float('weight', 8, 4);
+            $table->string('pokemonTypes');
+            $table->float('height');
+            $table->float('weight');
+            $table->string('abilities');
+            $table->string('egg_groups');
+            $table->string('stats');
             $table->string('genus');
             $table->mediumText('description');
             $table->timestamps();

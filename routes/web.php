@@ -17,6 +17,8 @@ Route::get('/about', 'PagesController@getAbout')->name('pages.about');
 
 Route::get('contact', 'ContactController@showForm')->name('contact.show');
 
+Route::resource('mypokemon', 'MyPokemonController');
+
 //Route::get('pokemonlist', 'PagesController@getPokemonList')->name('pages.pokemonlist');
 
 Route::resource('pokemon', 'PokemonController');

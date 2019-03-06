@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Pokemon extends Model
+class MyPokemon extends Model
 {
     //Table Name
-    protected $table = 'pokemon';
+    protected $table = 'my_pokemons';
 
     //Primary Key
     public $primaryKey = 'id';
