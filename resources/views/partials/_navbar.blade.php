@@ -12,21 +12,21 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ route('pages.about')}}">About</a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="{{ route('contact.show')}}">Contact</a>
-      </li>
+      </li> -->
       <li class="nav-item">
         <a class="nav-link" href="{{ route('pokemon.index')}}">Pokemon</a>
       </li>
 
-      <li class="nav-item dropdown">
+      <!-- <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
           <a class="dropdown-item" href="#">Action</a>
           <a class="dropdown-item" href="#">Another action</a>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
-      </li>
+      </li> -->
     </ul>
 
     <!-- Right Side Of Navbar -->
@@ -48,6 +48,10 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('mypokemon.index') }}">
+                        {{ __('My Pokemon') }}
+                    </a>
+
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">
