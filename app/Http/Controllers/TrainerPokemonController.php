@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\TrainerPokemon;
 use App\MyPokemon;
 use App\Pokemon;
+use DB;
 //use App\Http\Controllers\Auth;
 
 class TrainerPokemonController extends Controller
@@ -30,15 +31,30 @@ class TrainerPokemonController extends Controller
      */
     public function create($pokeId)
     {
-      //return view('contact.form');
-      //Auth::user()->id;
-      $trainerPokemon = new TrainerPokemon;
-      //$trainerPokemon->trainerId = auth()->user('id');
-      $trainerPokemon->trainerId = auth()->user()->id;
-      $trainerPokemon->pokemonId = $pokeId;
-      $trainerPokemon->save();
+      // //return view('contact.form');
+      // //Auth::user()->id;
+      // $trainerPokemon = new TrainerPokemon;
+      // //$trainerPokemon->trainerId = auth()->user('id');
+      // $trainerPokemon->trainerId = auth()->user()->id;
+      // $trainerPokemon->pokemonId = $pokeId;
+      // $trainerPokemon->save();
+      // $pokemon = Pokemon::find($pokeId);
+      // return view('pokemon.added')->with('pokemon', $pokemon);
+
       $pokemon = Pokemon::find($pokeId);
-      return view('pokemon.added')->with('pokemon', $pokemon);
+
+      if(DB::table('trainer_pokemon')->where([['trainerId', '=', auth()->user()->id],['pokemonId', '=', $pokeId],])->exists()){
+          return view('pokemon.added', ['pokemon' => $pokemon], ['caught' => true]);
+      }
+      else {
+        $trainerPokemon = new TrainerPokemon;
+        $trainerPokemon->trainerId = auth()->user()->id;
+        $trainerPokemon->pokemonId = $pokeId;
+        $trainerPokemon->save();
+        //$pokemon = Pokemon::find($pokeId);
+        //return view('pokemon.added')->with('pokemon', $pokemon);
+        return view('pokemon.added', ['pokemon' => $pokemon], ['caught' => false]);
+      }
     }
 
     /**

@@ -14,6 +14,7 @@ class CreateTrainerPokemonTable extends Migration
     public function up()
     {
         Schema::create('trainer_pokemon', function (Blueprint $table) {
+            $table->increments('trainerPokemonId');
             $table->integer('trainerId');
             $table->integer('pokemonId');
         });
