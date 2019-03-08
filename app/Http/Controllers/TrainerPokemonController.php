@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\TrainerPokemon;
 use App\MyPokemon;
+use App\Pokemon;
+//use App\Http\Controllers\Auth;
 
-class MyPokemonController extends Controller
+class TrainerPokemonController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +17,10 @@ class MyPokemonController extends Controller
      */
     public function index()
     {
-      $mypokemon = MyPokemon::orderBy('id','asc')->get();
-      $mypokemon = MyPokemon::orderBy('id','asc')->paginate(20);
-      return view('pokemon.mypokemon')->with('mypokemon', $mypokemon);
+        //return view('contact.form');
+        $mypokemon = TrainerPokemon::orderBy('id','asc')->get();
+        $mypokemon = TrainerPokemon::orderBy('id','asc')->paginate(20);
+        return view('pokemon.mypokemon')->with('mypokemon', $mypokemon);
     }
 
     /**
@@ -24,9 +28,17 @@ class MyPokemonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($pokeId)
     {
-        //
+      //return view('contact.form');
+      //Auth::user()->id;
+      $trainerPokemon = new TrainerPokemon;
+      //$trainerPokemon->trainerId = auth()->user('id');
+      $trainerPokemon->trainerId = auth()->user()->id;
+      $trainerPokemon->pokemonId = $pokeId;
+      $trainerPokemon->save();
+      $pokemon = Pokemon::find($pokeId);
+      return view('pokemon.added')->with('pokemon', $pokemon);
     }
 
     /**
@@ -48,8 +60,9 @@ class MyPokemonController extends Controller
      */
     public function show($id)
     {
-      $poke = Pokemon::find($id);
-      return view('pokemon.show')->with('pokemon', $poke);
+      // return Pokemon::find($id);
+      $poke = TrainerPokemon::find($trainerId);
+      return view('pokemon.mypokemon')->with('poke', $poke);
     }
 
     /**

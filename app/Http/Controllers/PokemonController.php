@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pokemon;
-use App\PokemonStats;
 
 class PokemonController extends Controller
 {
@@ -152,7 +151,7 @@ class PokemonController extends Controller
     {
         // return Pokemon::find($id);
         $poke = Pokemon::find($id);
-        return view('pokemon.show')->with('pokemon', $poke);
+        return view('pokemon.show')->with('poke', $poke);
     }
 
     /**
