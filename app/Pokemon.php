@@ -16,4 +16,12 @@ class Pokemon extends Model
     public $timestamps = true;
 
     protected $fillable=['id', 'pokemonName', 'pokemonTypes', 'height', 'weight', 'abilities', 'egg_groups', 'stats', 'genus', 'description'];
+
+
+
+    public function trainerPokemon()
+    {
+        return $this->belongsTo('App\TrainerPokemon');
+    }
+
 }

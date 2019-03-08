@@ -27,4 +27,19 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    public function pokemon()
+    {
+      return $this->hasManyThrough(
+          'App\Pokemon',
+          'App\TrainerPokemon',
+          'trainerId', // Foreign key on users table...
+          'id', // Foreign key on posts table...
+          'id', // Local key on countries table...
+          'pokemonId' // Local key on users table...
+      );
+    }
+
+
 }

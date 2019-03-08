@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\MyPokemon;
+use App\Pokemon;
+use App\User;
 
 class MyPokemonController extends Controller
 {
@@ -14,9 +16,17 @@ class MyPokemonController extends Controller
      */
     public function index()
     {
-      $mypokemon = MyPokemon::orderBy('id','asc')->get();
-      $mypokemon = MyPokemon::orderBy('id','asc')->paginate(20);
-      return view('pokemon.mypokemon')->with('mypokemon', $mypokemon);
+      // $mypokemon = MyPokemon::orderBy('id','asc')->get();
+      // $mypokemon = MyPokemon::orderBy('id','asc')->paginate(20);
+      // return view('pokemon.mypokemon')->with('mypokemon', $mypokemon);
+
+      //->where([['trainerId', '=', auth()->user()->id],['pokemonId', '=', $pokeId],])
+      $user_id = auth()->user()->id;
+      $user = User::find($user_id);
+      // $trainerId = auth()->user()->id;
+      // $mypokemon = Pokemon::where('votes', '=', 100)->orderBy('id','asc')->get();
+      // $mypokemon = MyPokemon::orderBy('id','asc')->paginate(20);
+      return view('pokemon.mypokemon')->with('mypokemon', $user->pokemon);
     }
 
     /**
@@ -49,7 +59,7 @@ class MyPokemonController extends Controller
     public function show($id)
     {
       $poke = Pokemon::find($id);
-      return view('pokemon.show')->with('pokemon', $poke);
+      return view('pokemon.showmypokemon')->with('poke', $poke);
     }
 
     /**

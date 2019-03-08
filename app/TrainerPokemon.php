@@ -16,4 +16,11 @@ class TrainerPokemon extends Model
     public $timestamps = false;
 
     protected $fillable=['trainerId', 'pokemonId'];
+
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
 }
