@@ -2,9 +2,12 @@
 
 @section('content')
 <div class='container'>
-  <h1>{{$pokemon->pokemonName}}</h1>
+  <h1>{{$poke->pokemonName}}</h1>
   <div>
-    {{$pokemon->description}}
-  </div>
-</div>  
+    {{$poke->description}}
+  </div><br>
+  @auth
+    <a href="../trainerPokemonController/{{$poke->id}}">Add to My Pokemon</a>
+  @endauth
+</div>
 @endsection

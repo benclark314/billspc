@@ -19,6 +19,15 @@ Route::get('contact', 'ContactController@showForm')->name('contact.show');
 
 Route::resource('mypokemon', 'MyPokemonController');
 
+// Route::resource('trainerPokemon', 'TrainerPokemonController');
+
+Route::resource('trainerPokemon', 'TrainerPokemonController')->except([
+    'create'
+]);
+
+//Route::get('trainerPokemon', 'ContactController@showForm')->name('contact.show');
+Route::get('trainerPokemonController/{pokeId}', 'TrainerPokemonController@create');
+
 //Route::get('pokemonlist', 'PagesController@getPokemonList')->name('pages.pokemonlist');
 
 Route::resource('pokemon', 'PokemonController');
