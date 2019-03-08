@@ -10,7 +10,7 @@ class TrainerPokemon extends Model
     protected $table = 'trainer_pokemon';
 
     //Primary Key
-    public $primaryKey = 'trainerId';
+    public $primaryKey = 'trainerPokemonId';
 
     //Timestamps
     public $timestamps = false;
