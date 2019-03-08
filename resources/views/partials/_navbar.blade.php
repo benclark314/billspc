@@ -18,7 +18,11 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ route('pokemon.index')}}">Pokemon</a>
       </li>
-
+      @auth
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('mypokemon.index') }}">My Pokemon</a>
+      </li>
+      @endauth
       <!-- <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
