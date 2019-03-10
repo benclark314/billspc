@@ -34,10 +34,10 @@ class User extends Authenticatable
       return $this->hasManyThrough(
           'App\Pokemon',
           'App\TrainerPokemon',
-          'trainerId', // Foreign key on users table...
-          'id', // Foreign key on posts table...
-          'id', // Local key on countries table...
-          'pokemonId' // Local key on users table...
+          'trainerId', // Foreign key on country table
+          'id', // Foreign key on pokemon table
+          'id', // Local key on users table
+          'pokemonId' // Local key on trainer_pokemon table
       );
     }
 

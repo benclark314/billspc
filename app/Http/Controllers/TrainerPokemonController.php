@@ -31,16 +31,6 @@ class TrainerPokemonController extends Controller
      */
     public function create($pokeId)
     {
-      // //return view('contact.form');
-      // //Auth::user()->id;
-      // $trainerPokemon = new TrainerPokemon;
-      // //$trainerPokemon->trainerId = auth()->user('id');
-      // $trainerPokemon->trainerId = auth()->user()->id;
-      // $trainerPokemon->pokemonId = $pokeId;
-      // $trainerPokemon->save();
-      // $pokemon = Pokemon::find($pokeId);
-      // return view('pokemon.added')->with('pokemon', $pokemon);
-
       $pokemon = Pokemon::find($pokeId);
 
       if(DB::table('trainer_pokemon')->where([['trainerId', '=', auth()->user()->id],['pokemonId', '=', $pokeId],])->exists()){
@@ -51,8 +41,6 @@ class TrainerPokemonController extends Controller
         $trainerPokemon->trainerId = auth()->user()->id;
         $trainerPokemon->pokemonId = $pokeId;
         $trainerPokemon->save();
-        //$pokemon = Pokemon::find($pokeId);
-        //return view('pokemon.added')->with('pokemon', $pokemon);
         return view('pokemon.added', ['pokemon' => $pokemon], ['caught' => false]);
       }
     }

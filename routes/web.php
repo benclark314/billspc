@@ -19,21 +19,15 @@ Route::get('contact', 'ContactController@showForm')->name('contact.show');
 
 Route::resource('mypokemon', 'MyPokemonController');
 
-// Route::resource('trainerPokemon', 'TrainerPokemonController');
+Route::get('MyPokemonController/json', 'MyPokemonController@showJSON')->name('mypokemon.showJSON');
 
 Route::resource('trainerPokemon', 'TrainerPokemonController')->except([
     'create'
 ]);
 
-//Route::get('trainerPokemon', 'ContactController@showForm')->name('contact.show');
 Route::get('trainerPokemonController/{pokeId}', 'TrainerPokemonController@create');
 
-//Route::get('pokemonlist', 'PagesController@getPokemonList')->name('pages.pokemonlist');
-
 Route::resource('pokemon', 'PokemonController');
-//Route::get('/users/{id}/{name}', function($id, $name){
-//    return 'This is user '.$name.' with an id of '.$id;
-//});
 
 Auth::routes();
 
