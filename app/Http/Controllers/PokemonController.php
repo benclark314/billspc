@@ -14,11 +14,6 @@ class PokemonController extends Controller
      */
     public function index()
     {
-        //$pokemon = Pokemon::all();
-        //$pokemon = Pokemon::orderBy('id','asc')->take(1)->get();
-        //return Pokemon::where('genus', 'Seed Pokemon')->get();
-        //$pokemon = DB::select('SELECT * FROM pokemon');
-
         $pokemon = Pokemon::orderBy('id','asc')->get();
         $pokemon = Pokemon::orderBy('id','asc')->paginate(20);
         return view('pokemon.index')->with('pokemon', $pokemon);
@@ -79,7 +74,6 @@ class PokemonController extends Controller
       //looping through other columns
 
       while($columns=fgetcsv($file, 0, ","))
-      //while($columns=fgetcsv( $file [, 0 [, "," [, '"' [, "\\" ]]]] ))
       {
           if($columns[0]=="")
           {
@@ -124,7 +118,6 @@ class PokemonController extends Controller
          //$created_at=$data['created_at'];
          //$updated_at=$data['updated_at'];
 
-         //$budget= Budget::firstOrNew(['id'=>$id,'month'=>$month]);
          $pokemon= Pokemon::firstOrNew(['id'=>$id]);
          $pokemon->id=$id;
          $pokemon->pokemonName=$name;

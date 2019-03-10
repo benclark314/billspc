@@ -25,14 +25,4 @@ class PagesController extends Controller
       );
       return view('pages.pokemonlist')->with($data); //, compact('title'
     }
-
-
-
-    //public function getPokemonList(){
-      //$title = 'Pokemon list';
-      //$data = array(
-        //'title' => 'Services'
-      //);
-      //return view('pages.pokemonlist', compact('title')); //, compact('title'
-    //}
 }
