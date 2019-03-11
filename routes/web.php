@@ -25,12 +25,6 @@ Route::get('mypokemon/create/{pokeId}', 'MyPokemonController@create');
 
 Route::get('MyPokemonController/json', 'MyPokemonController@showJSON')->name('mypokemon.showJSON');
 
-Route::resource('trainerPokemon', 'TrainerPokemonController')->except([
-    'create'
-]);
-
-Route::get('trainerPokemonController/{pokeId}', 'TrainerPokemonController@create');
-
 Route::resource('pokemon', 'PokemonController');
 
 Auth::routes();
