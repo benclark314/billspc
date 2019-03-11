@@ -9,7 +9,7 @@
           <h3><a href="pokemon/{{$poke->id}}">{{$poke->pokemonName}}</a></h3>
           <small>Caught {{$poke->created_at}}</small>
             @auth
-              <a href="trainerPokemonController/{{$poke->id}}">Add to My Pokemon</a>
+              <a href="mypokemon/create/{{$poke->id}}">Add to My Pokemon</a>
             @endauth
         </div>
       </div><br>
