@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\TrainerPokemon;
 use App\MyPokemon;
 use App\Pokemon;
 use App\User;
+use DB;
 
 class MyPokemonController extends Controller
 {
@@ -26,9 +28,20 @@ class MyPokemonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($pokeId)
     {
-        //
+      $pokemon = Pokemon::find($pokeId);
+
+      if(DB::table('trainer_pokemon')->where([['trainerId', '=', auth()->user()->id],['pokemonId', '=', $pokeId],])->exists()){
+          return view('pokemon.added', ['pokemon' => $pokemon], ['caught' => true]);
+      }
+      else {
+        $trainerPokemon = new TrainerPokemon;
+        $trainerPokemon->trainerId = auth()->user()->id;
+        $trainerPokemon->pokemonId = $pokeId;
+        $trainerPokemon->save();
+        return view('pokemon.added', ['pokemon' => $pokemon], ['caught' => false]);
+      }
     }
 
     /**

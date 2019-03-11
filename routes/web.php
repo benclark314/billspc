@@ -17,7 +17,11 @@ Route::get('/about', 'PagesController@getAbout')->name('pages.about');
 
 Route::get('contact', 'ContactController@showForm')->name('contact.show');
 
-Route::resource('mypokemon', 'MyPokemonController');
+Route::resource('mypokemon', 'MyPokemonController')->except([
+    'create'
+]);
+
+Route::get('mypokemon/create/{pokeId}', 'MyPokemonController@create');
 
 Route::get('MyPokemonController/json', 'MyPokemonController@showJSON')->name('mypokemon.showJSON');
 

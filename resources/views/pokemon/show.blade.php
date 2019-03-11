@@ -7,7 +7,7 @@
     {{$poke->description}}
   </div><br>
   @auth
-    <a href="../trainerPokemonController/{{$poke->id}}">Add to My Pokemon</a>
+    <a href="../mypokemon/create/{{$poke->id}}">Add to My Pokemon</a>
   @endauth
 </div>
 @endsection

@@ -13,16 +13,7 @@ class PagesController extends Controller
 
     //Get index page(/)
     public function getAbout(){
-      $title = 'Contact Page';
-      return view('pages.about', compact('title')); //, compact('title'
-    }
-
-    public function getPokemonList(){
-      //$title = 'Pokemon list';
-      $data = array(
-        'title' => 'Pokemon List',
-        'pokemon' => ['Charmander', 'Bulbasaur', 'Ivysaur']
-      );
-      return view('pages.pokemonlist')->with($data); //, compact('title'
+      $title = 'About Bill\'s PC';
+      return view('pages.about', compact('title'));
     }
 }
