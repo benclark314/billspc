@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
 use App\Pokemon;
+use App\Http\Resources\Pokemon as PokemonResource;
 
 class PokemonController extends Controller
 {
