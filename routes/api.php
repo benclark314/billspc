@@ -16,3 +16,18 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//List Pokemon
+Route::get('pokemon', 'ApiControllers\\PokemonApiController@index');
+
+//Return single pokemon
+Route::get('pokemon/{id}', 'ApiControllers\\PokemonApiController@show');
+
+//Create a new pokemon
+Route::post('pokemon', 'ApiControllers\\PokemonApiController@store');
+
+//Update a pokemon
+Route::put('pokemon', 'ApiControllers\\PokemonApiController@store');
+
+//Delete a pokemon
+Route::delete('pokemon/{id}', 'ApiControllers\\PokemonApiController@destroy');
